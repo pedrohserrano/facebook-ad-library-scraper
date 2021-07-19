@@ -8,13 +8,16 @@ from itertools import product
 with open('config.yaml', 'r') as f:
     config = yaml.safe_load(f)
 
+with open('TOKEN.txt') as f:
+    token = f.readlines()
+
 assert config['search_total'] % config['page_total'] == 0, \
     "search_total should be a multiple of page_total."
 
 params = {
-    'access_token': config['access_token'],
+    'access_token': token,
     'ad_type': 'POLITICAL_AND_ISSUE_ADS',
-    'ad_reached_countries': "['US']",
+    'ad_reached_countries': "['NL']",
     'ad_active_status': config['ad_active_status'],
     'search_terms': config.get('search_terms'),
     'search_page_ids': ",".join(config.get('search_page_ids', [])),
@@ -43,7 +46,7 @@ w3.writeheader()
 pbar = tqdm(total=config['search_total'], smoothing=0)
 
 for _ in range(int(config['search_total'] / config['page_total'])):
-    r = requests.get('https://graph.facebook.com/v5.0/ads_archive',
+    r = requests.get('https://graph.facebook.com/v11.0/ads_archive',
                      params=params)
     data = r.json()
     for ad in data['data']:

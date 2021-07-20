@@ -1,4 +1,6 @@
+[![Python](https://img.shields.io/pypi/pyversions/plotly)](./requirements.txt)
 [![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+[![DOI](https://zenodo.org/badge/387397007.svg)](https://zenodo.org/badge/latestdoi/387397007)
 
 ---
 
@@ -80,7 +82,7 @@ In this analysis we extracted over 8000 inactive ads by querying "stem" ("to vot
 
 In this pilot data analysis, advertisement data has been collected on more than 8k ads using Facebook's Ad Library API. including the period range around the Dutch General Elections in 2021, i.e. January to April 2021, all campaigns collected were inactive ones. The party CDA was by far the one with more unique ads created with more than 2k, followed by smaller parties like Volt with 409 and DENK with 329. Furthermore, CDA spent up to 150,000 Euros on campaigns it wasn't the one that spent the most. Forum voor Democratie (FVD) spent up to 220,000 Euros in ads campaigns. Marketers choose the last Friday before the election days (March 12) to launch the majority of the campaigns (3-4 days prior to voting). [See the full analysis here](https://nbviewer.jupyter.org/github/pedrohserrano/facebook-ads-library-netherlands/blob/master/Facebook_Ads_API.ipynb)
 
-<img src="assets/ads_province.png" alt="drawing" width="900"/>
+<img src="assets/ads_province.png" alt="drawing1" width="800"/>
 
 ---
 

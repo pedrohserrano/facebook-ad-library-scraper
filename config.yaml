@@ -2,12 +2,12 @@
 #access_token: <FILL IN>
 
 page_total: 100   # Should be a maximum of 1,000
-search_total: 100   # You can query a maximum of 5,000 ads
+search_total: 30000   # You can query a maximum of 5,000 ads
 
-ad_active_status: ALL   # ACTIVE, INACTIVE, or ALL
+ad_active_status: INACTIVE   # ACTIVE, INACTIVE, or ALL
 
 # You can provide search terms and/or page IDs.
-search_terms: klimaat
+search_terms: stem
 # search_page_ids:   # Max 10 pages
 #   - !!str 153080620724   # page_ids should be str, not int
 #   - !!str 416707608450706
@@ -29,8 +29,9 @@ query_fields:
   - page_name
   - region_distribution
   - spend
+  - currency
 
-# Fields which are included in the main CSV, including derived fields
+# Fields which are included in the main CSV, including derived fields - impressions_max, excluded
 output_fields:
   - ad_id
   - page_id
@@ -43,10 +44,10 @@ output_fields:
   - ad_delivery_stop_time
   - funding_entity
   - impressions_min
-  - impressions_max
   - spend_min
   - spend_max
   - ad_url
+  - currency
 
 # Fields for the unnested CSVs
 demo_fields:

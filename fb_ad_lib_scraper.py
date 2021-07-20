@@ -28,17 +28,17 @@ params = {
 REGIONS = set(config['regions'])
 DEMOS = set(product(config['demo_ages'], config['demo_genders']))
 
-f1 = open('fb_ads.csv', 'w')
+f1 = open('data/fb_ads.csv', 'w')
 w1 = csv.DictWriter(f1, fieldnames=config['output_fields'],
                     extrasaction='ignore')
 w1.writeheader()
 
-f2 = open('fb_ads_demos.csv', 'w')
+f2 = open('data/fb_ads_demos.csv', 'w')
 w2 = csv.DictWriter(f2, fieldnames=config['demo_fields'],
                     extrasaction='ignore')
 w2.writeheader()
 
-f3 = open('fb_ads_regions.csv', 'w')
+f3 = open('data/fb_ads_regions.csv', 'w')
 w3 = csv.DictWriter(f3, fieldnames=config['region_fields'],
                     extrasaction='ignore')
 w3.writeheader()
@@ -93,7 +93,7 @@ for _ in range(int(config['search_total'] / config['page_total'])):
         ad.update({'ad_id': ad_id,
                    'ad_url': ad_url,
                    'impressions_min': ad['impressions']['lower_bound'],
-                   'impressions_max': ad['impressions']['upper_bound'],
+                   #'impressions_max': ad['impressions']['upper_bound'],
                    'spend_min': ad['spend']['lower_bound'],
                    'spend_max': ad['spend']['upper_bound'],
                    })

@@ -4,9 +4,10 @@
 
 # Facebook Ads Data Analysis
 
-Methodologies and limitations of using the Facebook Graph API to access the Facebook Ads library performing data analysis on the 2021 Dutch General Elections getting key insights of advertisement practices.
+Methodologies and limitations of using the Facebook Graph API to access the Facebook Ads library performing data analysis on the 2021 Dutch General Elections getting key insights of advertisement practices.  
+[See the full analysis here](https://nbviewer.jupyter.org/github/pedrohserrano/facebook-ads-library-netherlands/blob/master/Facebook_Ads_API.ipynb)
 
-<img src="assets/ads.png" alt="drawing" width="700"/>
+<img src="assets/ads.png" alt="drawing" width="900"/>
 
 
 The Dutch general elections took place from 15 to 17 March 2021 to elect all 150 members of the House of Representatives[1](https://www.rijksoverheid.nl/actueel/nieuws/2020/10/30/vervroegd-stemmen-wordt-mogelijk-bij-tweede-kamerverkiezingen-2021).  
@@ -14,7 +15,7 @@ The Dutch general elections took place from 15 to 17 March 2021 to elect all 150
 This was already an especial circumstance since the election had originally been scheduled to take place on 17 March. However, due to the COVID-19 pandemic, the government decided to open some polling stations two days in advance to ensure safe voting for elderly and immunocompromised citizens. Citizens aged 70 years or older were also given the opportunity to vote by post.
 
 
-<img src="assets/budget.png" alt="drawing" width="700"/>
+<img src="assets/budget.png" alt="drawing" width="900"/>
 
 ## Software
 ---
@@ -29,13 +30,16 @@ This works contains an out-of-the-box Python scraper for the Facebook Ads Librar
 - This script will impute 0 for missing demographics and regions
 - The intent of this tool is to investigate political advertisements practices on Facebook
 - It should *only* be used for research and analysis, not for monetary gain. 
-- The data analisys is one file: `Facebook_Ads_API.ipynb`
+- The data analisys is one file: `Facebook_Ads_API.ipynb` [See the full analysis here](https://nbviewer.jupyter.org/github/pedrohserrano/facebook-ads-library-netherlands/blob/master/Facebook_Ads_API.ipynb)
 - The data used for this analysis in the data folder, if you run the analysis the data will be overwritten.
+- Facebook **ONLY** allows to retrieve ads about `Social Issues, Elections or Politics`, or `Maatschappelijke kwesties, verkiezingen of politiek` in Dutch.
 
-## Usage
 ---
 
-In order to use the API, one need to gain access to the Facebook Ads Library API at [facebook.com/ID](https://www.facebook.com/ID) and confirm your identity for `Running Ads About Social Issues, Elections or Politics`, or `Maatschappelijke kwesties, verkiezingen of politiek` in Dutch.
+## Usage
+
+
+In order to use the API, one need to gain access to the Facebook Ads Library API at [facebook.com/ID](https://www.facebook.com/ID) and confirm your identity.
 
 The configuration of the API call relies entirely in the configuration file `config.yaml`. 
 
@@ -67,20 +71,23 @@ This script outputs three CSV files in an ideal format to be analyzed.
 
 In this analysis we extracted over 8000 inactive ads by querying "stem" ("to vote" in Dutch) filtering therefore the ones related to the elections and setting a manageable limit for the API. The outputs lay in the [data folder](https://github.com/pedrohserrano/facebook-ads-library-netherlands/tree/master/data).
 
-## Data Analysis
 ---
-In this pilot data analysis, advertisement data has been collected on more than 8k ads using Facebook's Ad Library API. including the period range around the Dutch General Elections in 2021, i.e. January to April 2021, all campaigns collected were inactive ones. The party CDA was by far the one with more unique ads created with more than 2k, followed by smaller parties like Volt with 409 and DENK with 329. Furthermore, CDA spent up to 150,000 Euros on campaigns it wasn't the one that spent the most. Forum voor Democratie (FVD) spent up to 220,000 Euros in ads campaigns. Marketers choose the last Friday before the election days (March 12) to launch the majority of the campaigns (3-4 days prior to voting). [See the full analysis here]()
 
-<img src="assets/ads_region.png" alt="drawing" width="700"/>
+## Data Analysis
+
+In this pilot data analysis, advertisement data has been collected on more than 8k ads using Facebook's Ad Library API. including the period range around the Dutch General Elections in 2021, i.e. January to April 2021, all campaigns collected were inactive ones. The party CDA was by far the one with more unique ads created with more than 2k, followed by smaller parties like Volt with 409 and DENK with 329. Furthermore, CDA spent up to 150,000 Euros on campaigns it wasn't the one that spent the most. Forum voor Democratie (FVD) spent up to 220,000 Euros in ads campaigns. Marketers choose the last Friday before the election days (March 12) to launch the majority of the campaigns (3-4 days prior to voting). [See the full analysis here](https://nbviewer.jupyter.org/github/pedrohserrano/facebook-ads-library-netherlands/blob/master/Facebook_Ads_API.ipynb)
+
+<img src="assets/ads_province.png" alt="drawing" width="900"/>
+
+---
 
 ## Maintainer/Creator
----
 
 This analysis was made possible due to the amazing Max Woolf's ([@minimaxir](https://minimaxir.com)) Facebook API Ads scrapper. In the [original repository](https://github.com/minimaxir/facebook-ad-library-scraper) one can find examples on the US ads. Please contribute to his work!!
 
 *Max's open-source projects are supported by his [Patreon](https://www.patreon.com/minimaxir) and [GitHub Sponsors](https://github.com/sponsors/minimaxir). If you found this project helpful, any monetary contributions to the Patreon are appreciated and will be put to good creative use.*
 
 ---
-Copyright (C) 2021, Pedro V Hernandez Serrano
+**Copyright (C) 2021, Pedro V Hernandez Serrano**
 
 [MIT License](https://github.com/pedrohserrano/facebook-ads-library-netherlands/blob/master/LICENSE)

@@ -17,8 +17,9 @@ This was already an especial circumstance since the election had originally been
 
 <img src="assets/budget.png" alt="drawing" width="900"/>
 
-## Software
 ---
+
+## Software
 
 This works contains an out-of-the-box Python scraper for the Facebook Ads Library, using the official [Facebook Ad Library API](https://www.facebook.com/ads/library/api/). 
 
@@ -29,7 +30,7 @@ This works contains an out-of-the-box Python scraper for the Facebook Ads Librar
 - This script performs data transformation i.e. unnesting messy JSON to pretty data tables
 - This script will impute 0 for missing demographics and regions
 - The intent of this tool is to investigate political advertisements practices on Facebook
-- It should *only* be used for research and analysis, not for monetary gain. 
+- It "should" **ONLY** be used for research and analysis, not for monetary gain. 
 - The data analisys is one file: `Facebook_Ads_API.ipynb` [See the full analysis here](https://nbviewer.jupyter.org/github/pedrohserrano/facebook-ads-library-netherlands/blob/master/Facebook_Ads_API.ipynb)
 - The data used for this analysis in the data folder, if you run the analysis the data will be overwritten.
 - Facebook **ONLY** allows to retrieve ads about `Social Issues, Elections or Politics`, or `Maatschappelijke kwesties, verkiezingen of politiek` in Dutch.
@@ -61,8 +62,10 @@ pip3 install requests tqdm plotly
 python3 fb_ad_lib_scraper.py
 ```
 
-## Data Output
 ---
+
+## Data Output
+
 This script outputs three CSV files in an ideal format to be analyzed.  
 
 - `fb_ads.csv`: The raw ads and their metadata.  
@@ -81,7 +84,7 @@ In this pilot data analysis, advertisement data has been collected on more than 
 
 ---
 
-## Maintainer/Creator
+## Maintainer
 
 This analysis was made possible due to the amazing Max Woolf's ([@minimaxir](https://minimaxir.com)) Facebook API Ads scrapper. In the [original repository](https://github.com/minimaxir/facebook-ad-library-scraper) one can find examples on the US ads. Please contribute to his work!!
 

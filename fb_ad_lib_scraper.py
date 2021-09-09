@@ -28,17 +28,17 @@ params = {
 REGIONS = set(config['regions'])
 DEMOS = set(product(config['demo_ages'], config['demo_genders']))
 
-f1 = open('data/fb_ads.csv', 'w')
+f1 = open('data/fb_ads_'+str(config['search_terms'])+'.csv', 'w')
 w1 = csv.DictWriter(f1, fieldnames=config['output_fields'],
                     extrasaction='ignore')
 w1.writeheader()
 
-f2 = open('data/fb_ads_demos.csv', 'w')
+f2 = open('data/fb_ads_demos_'+str(config['search_terms'])+'.csv', 'w')
 w2 = csv.DictWriter(f2, fieldnames=config['demo_fields'],
                     extrasaction='ignore')
 w2.writeheader()
 
-f3 = open('data/fb_ads_regions.csv', 'w')
+f3 = open('data/fb_ads_regions_'+str(config['search_terms'])+'.csv', 'w')
 w3 = csv.DictWriter(f3, fieldnames=config['region_fields'],
                     extrasaction='ignore')
 w3.writeheader()
@@ -50,56 +50,58 @@ for _ in range(int(config['search_total'] / config['page_total'])):
                      params=params)
     data = r.json()
     for ad in data['data']:
+        #print(ad)
         # The ad_id is encoded in the ad snapshot URL
         # and cannot be accessed as a normal field. (?!?!)
+        if 'demographic_distribution' in ad.keys():
+            ad_id = re.search(r'\d+', ad['ad_snapshot_url']).group(0)
+            ad_url = 'https://www.facebook.com/ads/library/?id=' + ad_id
 
-        ad_id = re.search(r'\d+', ad['ad_snapshot_url']).group(0)
-        ad_url = 'https://www.facebook.com/ads/library/?id=' + ad_id
+            # write to the unnested files
+            demo_set = set()
+            for demo in ad['demographic_distribution']:
+                #print(demo)
+                demo.update({'ad_id': ad_id})
+                w2.writerow(demo)
+                demo_set.add((demo['age'], demo['gender']))
 
-        # write to the unnested files
-        demo_set = set()
-        for demo in ad['demographic_distribution']:
-            demo.update({'ad_id': ad_id})
-            w2.writerow(demo)
-            demo_set.add((demo['age'], demo['gender']))
+            # Impute a percentage of 0
+            # for demos with insufficient data
+            unused_demos = DEMOS - demo_set
+            for demo in unused_demos:
+                w2.writerow({
+                    'ad_id': ad_id,
+                    'age': demo[0],
+                    'gender': demo[1],
+                    'percentage': 0
+                })
 
-        # Impute a percentage of 0
-        # for demos with insufficient data
-        unused_demos = DEMOS - demo_set
-        for demo in unused_demos:
-            w2.writerow({
-                'ad_id': ad_id,
-                'age': demo[0],
-                'gender': demo[1],
-                'percentage': 0
-            })
+            region_set = set()
+            for region in ad['region_distribution']:
+                region.update({'ad_id': ad_id})
+                w3.writerow(region)
+                region_set.add(region['region'])
 
-        region_set = set()
-        for region in ad['region_distribution']:
-            region.update({'ad_id': ad_id})
-            w3.writerow(region)
-            region_set.add(region['region'])
+            # Impute a percentage of 0
+            # for states with insufficient data
+            unused_regions = REGIONS - region_set
+            for region in unused_regions:
+                w3.writerow({
+                    'ad_id': ad_id,
+                    'region': region,
+                    'percentage': 0
+                })
 
-        # Impute a percentage of 0
-        # for states with insufficient data
-        unused_regions = REGIONS - region_set
-        for region in unused_regions:
-            w3.writerow({
-                'ad_id': ad_id,
-                'region': region,
-                'percentage': 0
-            })
+            ad.update({'ad_id': ad_id,
+                       'ad_url': ad_url,
+                       'impressions_min': ad['impressions']['lower_bound'],
+                       #'impressions_max': ad['impressions']['upper_bound'],
+                       'spend_min': ad['spend']['lower_bound'],
+                       'spend_max': ad['spend']['upper_bound'],
+                       })
 
-        ad.update({'ad_id': ad_id,
-                   'ad_url': ad_url,
-                   'impressions_min': ad['impressions']['lower_bound'],
-                   #'impressions_max': ad['impressions']['upper_bound'],
-                   'spend_min': ad['spend']['lower_bound'],
-                   'spend_max': ad['spend']['upper_bound'],
-                   })
-
-        w1.writerow(ad)
-        pbar.update()
+            w1.writerow(ad)
+            pbar.update()
 
     # if we have scraped all the ads, exit
     if 'paging' not in data:

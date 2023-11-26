@@ -6,8 +6,9 @@ search_total: 5000   # You can query a maximum of 5,000 ads
 
 ad_active_status: ALL   # ACTIVE, INACTIVE, or ALL
 
+api_version: v18.0
 # You can provide search terms and/or page IDs.
-search_terms: "geld lenen"
+search_terms: "PVV"
 # search_page_ids:   # Max 10 pages
 #   - !!str 153080620724   # page_ids should be str, not int
 #   - !!str 416707608450706
@@ -15,50 +16,49 @@ search_terms: "geld lenen"
 # Fields for querying all possible metadata from the API
 query_fields:
   - ad_creation_time
-  - ad_creative_body
-  - ad_creative_link_caption
-  - ad_creative_link_description
-  - ad_creative_link_title
+  - ad_creative_bodies
+  - ad_creative_link_captions
+  - ad_creative_link_descriptions
+  - ad_creative_link_titles
   - ad_delivery_start_time
   - ad_delivery_stop_time
   - ad_snapshot_url
   - demographic_distribution
-  - funding_entity
+  - bylines
   - impressions
   - page_id
   - page_name
-  - region_distribution
+  - delivery_by_region
   - spend
   - currency
 
 # Fields which are included in the main CSV, including derived fields - impressions_max, excluded
 output_fields:
-  - ad_id
+  - id
   - page_id
   - page_name
-  - ad_creative_body
-  - ad_creative_link_caption
-  - ad_creative_link_description
-  - ad_creative_link_title
+  - ad_creative_bodies
+  - ad_creative_link_captions
+  - ad_creative_link_descriptions
+  - ad_creative_link_titles
   - ad_delivery_start_time
   - ad_delivery_stop_time
   - demographic_distribution
-  - funding_entity
-  - impressions_min
-  - spend_min
-  - spend_max
-  - ad_url
+  - bylines
+  - impressions
+  - spend
+  - ad_snapshot_url
   - currency
 
 # Fields for the unnested CSVs
 demo_fields:
-  - ad_id
+  - id
   - age
   - gender
   - percentage
 
 region_fields:
-  - ad_id
+  - id
   - region
   - percentage
 

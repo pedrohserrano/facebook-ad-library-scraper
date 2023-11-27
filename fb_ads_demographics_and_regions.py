@@ -1,3 +1,10 @@
+"""-----------------------------------------------------------------------------
+  Name: FB_AD_LIB_SCRAPER (Facebook Ads Library Scraper)
+  Description: It doesn't really scrapes, it actually makes API calls to the "Meta Ad Library API" - https://www.facebook.com/ads/library/api/ to extract Ads metadata based on a search term
+  Created By:  Pedro V (p.hernandezserrano@maastrichtuniversity.nl) with the help of ChatGPT 4 and based on the original fork from Max Woolf https://github.com/minimaxir/facebook-ad-library-scraper
+  Last Update: 27/11/23
+-----------------------------------------------------------------------------"""
+
 import csv
 import json
 import datetime
@@ -54,7 +61,7 @@ def process_ad_data(input_file):
                                 region_writer.writerow(region_data)
                         except json.JSONDecodeError as e:
                             #print(f"Error parsing JSON for ad_id {ad_id}: {row['delivery_by_region']}")
-                            print(f"JSON error (Skip): {e}")
+                            print(f"JSON error (Skipping): {e}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

@@ -1,3 +1,4 @@
-requests
-tqdm
-plotly
+tqdm==4.65.0
+plotly==5.9.0
+python-Levenshtein==0.23.0
+requests==2.31.0
